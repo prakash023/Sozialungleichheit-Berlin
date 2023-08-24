@@ -4,10 +4,10 @@
     var berlinBounds = L.latLngBounds([52.35, 13.08], [52.67, 13.76]);
 
     var map = L.map('map', {
-        center: [52.5200, 13.4050], // Berlin coordinates
+        center: [52.5200, 13.4050], 
         zoom: 11,
         maxBounds: berlinBounds,
-        maxBoundsViscosity: 1.0 // Ensures the map is not completely restricted at the boundaries
+        maxBoundsViscosity: 1.0 
     });
 
     var marker = null;
@@ -19,16 +19,16 @@
     ////Here wmslayer is included
     var wmsLayer = L.tileLayer.wms("http://localhost:8081/geoserver/mss_2021_Berlin_1/wms", {
         layers: "mss_2021_Berlin_1:berlin_bezirke",
-        format: 'image/png', // Change to your desired format
-        transparent: true // Change to true or false based on your requirement
+        format: 'image/png', 
+        transparent: true 
     });
     wmsLayer.addTo(map); 
 
 
     var wmsLayer1 = L.tileLayer.wms("http://localhost:8081/geoserver/mss_2021_Berlin_1/wms", {
         layers: "mss_2021_Berlin_1:choroplethenkarte_berlin_urban",
-        format: 'image/png', // Change to your desired format
-        transparent: true // Change to true or false based on your requirement
+        format: 'image/png', 
+        transparent: true 
     });
     wmsLayer1.addTo(map);
 
@@ -89,12 +89,3 @@
         popupContent += '</div>';
         infoBox.innerHTML = popupContent;
     }
-//});
-
-    // Attach click event to the map feature
-    // For example, if you have a GeoJSON layer 'geojsonLayer':
-    // geojsonLayer.on('click', onFeatureClick);
-    /* var wfsLayer = L.Geoserver.wfs("http://localhost:8080/geoserver/wfs", {
-    layers: "topp:tasmania_roads",
-    });
-    wfsLayer.addTo(map); */

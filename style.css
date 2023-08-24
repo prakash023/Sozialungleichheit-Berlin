@@ -21,10 +21,10 @@ h1 {
     flex: 1;
     padding: 0;
     
-    margin-right: 150px;
+    margin-right: 125px;
     box-sizing: border-box;
     margin-bottom: 130px;
-    height: 85vh;
+    height: 100vh;
     box-sizing: border-box;
 }
 
@@ -85,5 +85,9 @@ h1 {
     width: 20px;
     height: 20px;
     margin-right: 10px;
+}
+.no-underline {
+    text-decoration: none;
+    color: #000; /* Adjust the color as needed */
 }
 
