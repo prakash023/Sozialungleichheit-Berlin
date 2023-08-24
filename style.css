@@ -88,6 +88,5 @@ h1 {
 }
 .no-underline {
     text-decoration: none;
-    color: #000; /* Adjust the color as needed */
+    color: #000;
 }
-

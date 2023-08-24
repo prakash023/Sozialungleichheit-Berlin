@@ -43,7 +43,7 @@
     }); */
 
     function fetchLocation(query) {
-        var apiKey = 'iUcWCyFny4vwEZxWkBZ7rA';
+        var apiKey = 'YourAPIKey';
         var apiUrl = `https://geocode.search.hereapi.com/v1/geocode?q=${query}&apiKey=${apiKey}`;
 
         fetch(apiUrl)
