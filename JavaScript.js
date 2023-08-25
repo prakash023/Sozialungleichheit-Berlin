@@ -1,5 +1,5 @@
-//$(doument).ready(function(){
-
+    //$(doument).ready(function(){
+document.addEventListener("DOMContentLoaded", function() {
 
     var berlinBounds = L.latLngBounds([52.35, 13.08], [52.67, 13.76]);
 
@@ -17,31 +17,47 @@
     }).addTo(map);
 
     ////Here wmslayer is included
-    var wmsLayer = L.tileLayer.wms("http://localhost:8081/geoserver/mss_2021_Berlin_1/wms", {
+    var wmsLayer1 = L.tileLayer.wms("http://localhost:8081/geoserver/mss_2021_Berlin_1/wms", {
         layers: "mss_2021_Berlin_1:berlin_bezirke",
         format: 'image/png', 
         transparent: true 
     });
-    wmsLayer.addTo(map); 
+    wmsLayer1.addTo(map); 
 
 
-    var wmsLayer1 = L.tileLayer.wms("http://localhost:8081/geoserver/mss_2021_Berlin_1/wms", {
+    var wmsLayer2 = L.tileLayer.wms("http://localhost:8081/geoserver/mss_2021_Berlin_1/wms", {
         layers: "mss_2021_Berlin_1:choroplethenkarte_berlin_urban",
         format: 'image/png', 
         transparent: true 
     });
-    wmsLayer1.addTo(map);
+    wmsLayer2.addTo(map);
 
 
 
-//whenever i comment out this section the map runs without any problem but as a WMS Layer.
-    /* var wfsLayer = "http://localhost:8081/geoserver/mss_2021_Berlin_1/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mss_2021_Berlin_1%3Achoroplethenkarte_berlin_urban&maxFeatures=50&outputFormat=application%2Fjson" */
-
-    /* $.getJSON(wfsLayer).then(res=>{
+    //whenever i comment out this section the map runs without any problem but as a WMS Layer.
+    var wfsLayer = "http://localhost:8081/geoserver/mss_2021_Berlin_1/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mss_2021_Berlin_1%3Achoroplethenkarte_berlin_urban&maxFeatures=50&outputFormat=application%2Fjson" 
+    fetch(wfsLayer, {
+        method: 'GET',
+        credentials: 'include', // Include cookies
+        headers: {
+            'SameSite': 'None',    // Set SameSite attribute
+            
+            'Secure': 'true'       // Use secure connection (HTTPS)      
+        }
+    })
+        .then(response => response.json())
+        .then(res => {
+        
+        // Handle the WFS layer data
         console.log(res);
+    })
+    .catch(error => {
+        console.error('Error fetching WFS layer:', error); 
 
-    }); */
+      /*   $.getJSON(wfsLayer).then(res=>{
+            console.log(res); */
 
+    }); 
     function fetchLocation(query) {
         var apiKey = 'YourAPIKey';
         var apiUrl = `https://geocode.search.hereapi.com/v1/geocode?q=${query}&apiKey=${apiKey}`;
@@ -52,9 +68,14 @@
                 if (data.items.length > 0) {
                     var location = data.items[0].position;
 
+
                 if (marker) {
-                    map.removeLayer(marker);
-                }
+                    try {
+                        map.removeLayer(marker);
+                    } catch (error){
+                        console.error('Error manipulating layer:', error); 
+                    }   
+                } 
 
                 marker = L.marker([location.lat, location.lng], {
                     draggable: true
@@ -66,26 +87,22 @@
                 map.setView([location.lat, location.lng], 11);
                 map.setMaxBounds(berlinBounds);
 
-                infoBox.innerHTML = ''; 
+                //infoBox.innerHTML = '';
             }
         })
         .catch(error => {
             console.error('Error fetching location:', error);
         });
-    }
+}
 
-    document.getElementById('searchButton').addEventListener('click', function() {
-        var query = document.getElementById('searchInput').value;
-        fetchLocation(query);
-    });
-
-    
     function onFeatureClick(e) {
         var properties = e.layer.feature.properties;
-        var popupContent = '<div>';
-        for (var key in properties) {
-            popupContent += key + ': ' + properties[key] + '<br>';
+        var properties = '<div>';
+            for (var key in properties) {
+        popupContent += key + ': ' + properties[key] + '<br>';
     }
         popupContent += '</div>';
         infoBox.innerHTML = popupContent;
     }
+
+});
