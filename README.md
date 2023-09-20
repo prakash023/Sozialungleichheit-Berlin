@@ -1,4 +1,4 @@
-# Sozialungleichheit-Berlin
+# Social Urban Development 2021-Berlin
 Social Inequality - 2021
 Here i have tried to publish a WebGIS (WMS/WFS) in Geoserver and from Geoserver into a displayed in a HTML webpage., featured Social Urban Development Monitoring - 2021 (DE: Monitoring Soziale Stadtentwicklung) report 
 published in berlin city portal :
