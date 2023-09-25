@@ -12,18 +12,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;,"> <!-- //blocking tht favicon.ico file to prevent the browser from requesting it bcuz of error! -->
 
-    <script src="L.Geoserver.js"></script>
-
-     <!-- <script src="/lib/L.Geoserver.js"></script> -->
-     <!-- <script src="http://192.168.56.1:8081/lib/L.Geoserver.js"></script> -->
-
-     
-       
+    <script src="L.Geoserver.js"></script>  
+     <script src="L.TileLayer.BetterWMS.js"></script> 
     
 </head>
 
 <body>
-    <h1>Social Inequality Index- 2021- Berlin</h1>
+    <h1>Monitoring Social Urban Development- 2021- Berlin</h1>
     <div id="map"></div>
     <div id="searchContainer">
         <input type="text" id="searchInput" placeholder="Search for a place">
@@ -46,14 +41,31 @@
             very Low</div>
 
         </div>
-        <div id ="infobox">
-            <p>This map data report is available <a href="https://www.berlin.de/sen/sbw/stadtdaten/stadtwissen/monitoring-soziale-stadtentwicklung/bericht-2021/#Monitoring" 
-                target="_blank">
-                 here
-            </a>,as shown by the status index from the monitoring of social urban development- 2021.</p>
+        
+        <div id="infobox">
+            <p>
+                This map provides information about different areas in Berlin based on the 
+                <ul>
+                    <li>Status Index (SI),</li>
+                    <li>Socioeconomic Index (SK),</li>
+                    <li>Demographic Index (DI),</li>
+                    <li>Demographic Change Index (DK),</li>
+                    <li>Socioeconomic Change Index (SD_I), </li>
+                    <li>Demographic Change Index (SD_K).</li>
+                </ul>
+            </p>
+            <p>
+                Please click on the classified areas to view more details about each index. For a comprehensive 
+                report, please refer to this 
+                <a href="https://www.berlin.de/sen/sbw/stadtdaten/stadtwissen/monitoring-soziale-stadtentwicklung/bericht-2021/" 
+                    target="_blank">
+                    report
+                </a>
+                on the 2021 Monitoring of Social Urban Development.
+            </p>
         </div>
-
-      <script src="javaScript.js"> </script>                 
+        
+      <script src="javaScript.js"> </script>     
    
     </body>
 </html>

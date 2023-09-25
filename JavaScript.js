@@ -1,5 +1,6 @@
     //$(doument).ready(function(){
 document.addEventListener("DOMContentLoaded", function() {
+    
 
     var berlinBounds = L.latLngBounds([52.35, 13.08], [52.67, 13.76]);
 
@@ -17,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }).addTo(map);
 
     ////Here wmslayer is included
-    var wmsLayer1 = L.tileLayer.wms("http://localhost:8081/geoserver/mss_2021_Berlin_1/wms", {
+    var wmsLayer1 = L.tileLayer.betterWms("http://localhost:8081/geoserver/mss_2021_Berlin_1/wms", {
         layers: "mss_2021_Berlin_1:berlin_bezirke",
         format: 'image/png', 
         transparent: true 
@@ -25,17 +26,14 @@ document.addEventListener("DOMContentLoaded", function() {
     wmsLayer1.addTo(map); 
 
 
-    var wmsLayer2 = L.tileLayer.wms("http://localhost:8081/geoserver/mss_2021_Berlin_1/wms", {
+    var wmsLayer2 = L.tileLayer.betterWms("http://localhost:8081/geoserver/mss_2021_Berlin_1/wms", {
         layers: "mss_2021_Berlin_1:choroplethenkarte_berlin_urban",
         format: 'image/png', 
         transparent: true 
     });
     wmsLayer2.addTo(map);
 
-
-
-    //whenever i comment out this section the map runs without any problem but as a WMS Layer.
-    var wfsLayer = "http://localhost:8081/geoserver/mss_2021_Berlin_1/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=mss_2021_Berlin_1%3Achoroplethenkarte_berlin_urban&maxFeatures=50&outputFormat=application%2Fjson" 
+    var wfsLayer = "http://localhost:8081/geoserver/wfs?service=wfs&version=2.0.0&request=GetFeature&typeNames=mss_2021_Berlin_1:choroplethenkarte_berlin_urban&outputFormat=application/json" 
     fetch(wfsLayer, {
         method: 'GET',
         credentials: 'include', // Include cookies
@@ -97,9 +95,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function onFeatureClick(e) {
         var properties = e.layer.feature.properties;
-        var properties = '<div>';
-            for (var key in properties) {
-        popupContent += key + ': ' + properties[key] + '<br>';
+        var popupContent = '<div>';
+        for (var key in properties) {
+            popupContent += key + ': ' + properties[key] + '<br>';
     }
         popupContent += '</div>';
         infoBox.innerHTML = popupContent;

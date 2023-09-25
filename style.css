@@ -21,9 +21,10 @@ h1 {
     flex: 1;
     padding: 0;
     
+    
     margin-right: 125px;
     box-sizing: border-box;
-    margin-bottom: 130px;
+    margin-bottom: 30px;
     height: 100vh;
     box-sizing: border-box;
 }
@@ -89,4 +90,9 @@ h1 {
 .no-underline {
     text-decoration: none;
     color: #000;
+}
+#map {
+    height: calc(100vh - 400px); 
+    margin-right: 125px;
+    box-sizing: border-box;
 }
