@@ -7,3 +7,4 @@ published in berlin city portal :
 Social Urban Development Monitoring (SUDM) tracks and analyze the shifts in socio-structural progress within specific zones of a city withtin a localized level. The division are set from High to lower level. 
 
 
+<img width="1239" height="1037" alt="Mainpage" src="https://github.com/user-attachments/assets/df604f4e-26e0-4b37-a6ce-c92b3fb06429" />
